@@ -40,8 +40,8 @@ public class OptionalQueryParamInjectableProvider implements InjectableProvider<
                 return extractor.extract(c.getUriInfo().getQueryParameters(decode));
             } catch (ExtractorContainerException e) {
                 throw new ParamException.QueryParamException(e.getCause(),
-                                                             extractor.getName(),
-                                                             extractor.getDefaultStringValue());
+                        extractor.getName(),
+                        extractor.getDefaultStringValue());
             }
         }
     }
@@ -101,13 +101,13 @@ public class OptionalQueryParamInjectableProvider implements InjectableProvider<
     private Parameter unpack(Parameter param) {
         final Type typeParameter = ((ParameterizedType) param.getParameterType()).getActualTypeArguments()[0];
         return new Parameter(param.getAnnotations(),
-                             param.getAnnotation(),
-                             param.getSource(),
-                             param.getSourceName(),
-                             typeParameter,
-                             (Class<?>) typeParameter,
-                             param.isEncoded(),
-                             param.getDefaultValue());
+                param.getAnnotation(),
+                param.getSource(),
+                param.getSourceName(),
+                typeParameter,
+                (Class<?>) typeParameter,
+                param.isEncoded(),
+                param.getDefaultValue());
     }
 
     private MultivaluedParameterExtractorFactory getFactory() {
