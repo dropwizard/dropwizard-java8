@@ -16,7 +16,7 @@
     <artifactId>dropwizard-java8-jdbi</artifactId>
     <packaging>jar</packaging>
 
-    <name>Dropwizard JDBI (Java 8) support</name>
+    <name>Dropwizard JDBI with Java 8 support</name>
 
     <dependencies>
         <dependency>

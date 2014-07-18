@@ -16,9 +16,8 @@
     <artifactId>dropwizard-java8</artifactId>
     <packaging>jar</packaging>
 
-    <name>Dropwizard Java 8 support</name>
+    <name>Dropwizard with Java 8 support</name>
     <description>Addon bundle for Dropwizard to support Java 8 features</description>
-    <url>https://github.com/joschi/dropwizard-java8</url>
 
     <dependencies>
         <dependency>
