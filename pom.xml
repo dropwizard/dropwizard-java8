@@ -23,6 +23,7 @@
 
     <modules>
         <module>dropwizard-java8</module>
+        <module>dropwizard-java8-auth</module>
         <module>dropwizard-java8-jdbi</module>
     </modules>
 
