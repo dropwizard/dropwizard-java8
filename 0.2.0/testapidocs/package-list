@@ -1,0 +1,6 @@
+com.github.joschi.dropwizard.java8.auth
+com.github.joschi.dropwizard.java8.auth.basic
+com.github.joschi.dropwizard.java8.auth.oauth
+com.github.joschi.dropwizard.java8.jersey
+com.github.joschi.dropwizard.java8.jersey.params
+com.github.joschi.dropwizard.java8.validation.valuehandling
