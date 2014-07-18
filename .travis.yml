@@ -1,4 +1,11 @@
 language: java
+install:
+  - mvn install
+  - pushd dropwizard-java8-example && \
+    mvn package && \
+    java -jar target/dropwizard-java8-example-*.jar check example.yml && \
+    java -jar target/dropwizard-java8-example-*.jar db migrate example.yml && \
+    popd
 after_success: mvn jacoco:report coveralls:jacoco
 jdk:
   - oraclejdk8
