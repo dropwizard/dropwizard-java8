@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.github.joschi</groupId>
         <artifactId>dropwizard-java8-parent</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>dropwizard-java8-jdbi</artifactId>

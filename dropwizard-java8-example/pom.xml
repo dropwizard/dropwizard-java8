@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>0.7.1</dropwizard.version>
-        <dropwizard.java8.version>0.1.1-SNAPSHOT</dropwizard.java8.version>
+        <dropwizard.java8.version>0.2.0-SNAPSHOT</dropwizard.java8.version>
     </properties>
 
     <dependencies>
