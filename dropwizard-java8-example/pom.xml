@@ -6,7 +6,7 @@
         <maven>3.0.0</maven>
     </prerequisites>
 
-    <groupId>com.github.joschi.dropwizard</groupId>
+    <groupId>io.dropwizard.modules.dropwizard</groupId>
     <artifactId>dropwizard-java8-example</artifactId>
     <version>0.7.1</version>
     <name>Dropwizard Example Application</name>
@@ -60,17 +60,17 @@
             <version>1.4.180</version>
         </dependency>
         <dependency>
-            <groupId>com.github.joschi</groupId>
+            <groupId>io.dropwizard.modules</groupId>
             <artifactId>dropwizard-java8</artifactId>
             <version>${dropwizard.java8.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.joschi</groupId>
+            <groupId>io.dropwizard.modules</groupId>
             <artifactId>dropwizard-java8-auth</artifactId>
             <version>${dropwizard.java8.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.joschi</groupId>
+            <groupId>io.dropwizard.modules</groupId>
             <artifactId>dropwizard-java8-jdbi</artifactId>
             <version>${dropwizard.java8.version}</version>
         </dependency>

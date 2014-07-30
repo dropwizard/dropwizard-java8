@@ -7,7 +7,7 @@
     </prerequisites>
 
     <parent>
-        <groupId>com.github.joschi</groupId>
+        <groupId>io.dropwizard.modules</groupId>
         <artifactId>dropwizard-java8-parent</artifactId>
         <version>0.2.1-SNAPSHOT</version>
     </parent>

@@ -12,14 +12,14 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.github.joschi</groupId>
+    <groupId>io.dropwizard.modules</groupId>
     <artifactId>dropwizard-java8-parent</artifactId>
     <version>0.2.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Dropwizard Java 8 Bundle</name>
     <description>Addon bundle for Dropwizard to support Java 8 features</description>
-    <url>https://github.com/joschi/dropwizard-java8</url>
+    <url>https://github.com/dropwizard/dropwizard-java8</url>
 
     <modules>
         <module>dropwizard-java8</module>
@@ -36,25 +36,25 @@
     </licenses>
 
     <scm>
-        <developerConnection>scm:git:git@github.com:joschi/dropwizard-java8.git</developerConnection>
-        <connection>scm:git:github.com/joschi/dropwizard-java8.git</connection>
-        <url>https://github.com/joschi/dropwizard-java8</url>
+        <developerConnection>scm:git:git@github.com:dropwizard/dropwizard-java8.git</developerConnection>
+        <connection>scm:git:https://github.com/dropwizard/dropwizard-java8.git</connection>
+        <url>https://github.com/dropwizard/dropwizard-java8</url>
     </scm>
 
     <ciManagement>
         <system>Travis CI</system>
-        <url>https://travis-ci.org/joschi/dropwizard-java8</url>
+        <url>https://travis-ci.org/dropwizard/dropwizard-java8</url>
     </ciManagement>
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/joschi/dropwizard-java8/issues</url>
+        <url>https://github.com/dropwizard/dropwizard-java8/issues</url>
     </issueManagement>
 
     <distributionManagement>
         <site>
             <id>dropwizard-java8</id>
-            <url>http://joschi.github.io/dropwizard-java8/${project.version}</url>
+            <url>http://dropwizard.github.io/dropwizard-java8/${project.version}</url>
         </site>
     </distributionManagement>
 
