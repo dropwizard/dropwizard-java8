@@ -9,7 +9,7 @@
     <custom>
         <fluidoSkin>
             <gitHub>
-                <projectId>joschi/dropwizard-java8</projectId>
+                <projectId>dropwizard/dropwizard-java8</projectId>
                 <ribbonOrientation>right</ribbonOrientation>
                 <ribbonColor>red</ribbonColor>
             </gitHub>
