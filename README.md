@@ -1,8 +1,8 @@
 Dropwizard Java 8 Bundle
 ========================
 
-[![Build Status](https://travis-ci.org/joschi/dropwizard-java8.svg?branch=master)](https://travis-ci.org/joschi/dropwizard-java8)
-[![Coverage Status](https://img.shields.io/coveralls/joschi/dropwizard-java8.svg)](https://coveralls.io/r/joschi/dropwizard-java8)
+[![Build Status](https://travis-ci.org/dropwizard/dropwizard-java8.svg?branch=master)](https://travis-ci.org/dropwizard/dropwizard-java8)
+[![Coverage Status](https://img.shields.io/coveralls/dropwizard/dropwizard-java8.svg)](https://coveralls.io/r/dropwizard/dropwizard-java8)
 
 An addon bundle and a set of classes for using Java 8 features like `Optional<T>` and the new Date/Time API (JSR-310) in a [Dropwizard](http://www.dropwizard.io/) application.
 
@@ -34,28 +34,28 @@ This project is available on Maven Central. To add it to your project simply add
 `pom.xml`:
 
     <dependency>
-      <groupId>com.github.joschi</groupId>
+      <groupId>io.dropwizard.modules</groupId>
       <artifactId>dropwizard-java8</artifactId>
-      <version>0.2.0</version>
+      <version>0.7.0-1</version>
     </dependency>
 
     <dependency>
-      <groupId>com.github.joschi</groupId>
+      <groupId>io.dropwizard.modules</groupId>
       <artifactId>dropwizard-java8-auth</artifactId>
-      <version>0.2.0</version>
+      <version>0.7.0-1</version>
     </dependency>
 
     <dependency>
-      <groupId>com.github.joschi</groupId>
+      <groupId>io.dropwizard.modules</groupId>
       <artifactId>dropwizard-java8-jdbi</artifactId>
-      <version>0.2.0</version>
+      <version>0.7.0-1</version>
     </dependency>
 
 
 Support
 -------
 
-Please file bug reports and feature requests in [GitHub issues](https://github.com/joschi/dropwizard-java8/issues).
+Please file bug reports and feature requests in [GitHub issues](https://github.com/dropwizard/dropwizard-java8/issues).
 
 
 License
