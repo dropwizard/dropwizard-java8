@@ -1,7 +1,7 @@
 package com.example.helloworld.auth;
 
 import com.example.helloworld.core.User;
-import com.github.joschi.dropwizard.java8.auth.Authenticator;
+import io.dropwizard.java8.auth.Authenticator;
 import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.auth.basic.BasicCredentials;
 
