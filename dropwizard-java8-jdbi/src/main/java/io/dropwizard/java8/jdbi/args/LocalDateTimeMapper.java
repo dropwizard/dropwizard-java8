@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 /**
  * A {@link TypedMapper} to map {@link LocalDateTime} objects.
@@ -19,7 +18,7 @@ public class LocalDateTimeMapper extends TypedMapper<LocalDateTime> {
         if (timestamp == null) {
             return null;
         }
-        return LocalDateTime.ofEpochSecond(timestamp.getTime(), 0, ZoneOffset.UTC);
+        return timestamp.toLocalDateTime();
     }
 
     @Override
@@ -28,6 +27,6 @@ public class LocalDateTimeMapper extends TypedMapper<LocalDateTime> {
         if (timestamp == null) {
             return null;
         }
-        return LocalDateTime.ofEpochSecond(timestamp.getTime(), 0, ZoneOffset.UTC);
+        return timestamp.toLocalDateTime();
     }
 }
