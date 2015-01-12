@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 /**
  * An {@link Argument} for {@link LocalDateTime} objects.
@@ -26,7 +25,7 @@ public class LocalDateTimeArgument implements Argument {
                       final PreparedStatement statement,
                       final StatementContext ctx) throws SQLException {
         if (value != null) {
-            statement.setTimestamp(position, new Timestamp(value.toEpochSecond(ZoneOffset.UTC)));
+            statement.setTimestamp(position, Timestamp.valueOf(value));
         } else {
             statement.setNull(position, Types.TIMESTAMP);
         }
