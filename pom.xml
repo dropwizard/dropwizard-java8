@@ -68,6 +68,7 @@
     </developers>
 
     <properties>
+        <autoVersionSubmodules>true</autoVersionSubmodules>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <dropwizard.version>0.7.1</dropwizard.version>
         <jersey.version>1.18.1</jersey.version>
