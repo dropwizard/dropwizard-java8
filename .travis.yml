@@ -1,6 +1,5 @@
+sudo: false
 language: java
-install:
-  - mvn install
 after_success: mvn jacoco:report coveralls:jacoco
 jdk:
   - oraclejdk8
