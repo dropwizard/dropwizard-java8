@@ -9,7 +9,7 @@
     <parent>
         <groupId>io.dropwizard.modules</groupId>
         <artifactId>dropwizard-java8-parent</artifactId>
-        <version>0.7.1-2-SNAPSHOT</version>
+        <version>0.8.0-1-SNAPSHOT</version>
     </parent>
 
     <artifactId>dropwizard-java8-jdbi</artifactId>

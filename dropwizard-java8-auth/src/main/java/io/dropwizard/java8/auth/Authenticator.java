@@ -1,6 +1,5 @@
 package io.dropwizard.java8.auth;
 
-
 import io.dropwizard.auth.AuthenticationException;
 
 import java.util.Optional;

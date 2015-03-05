@@ -37,9 +37,9 @@ public class CachingAuthenticator<C, P> implements Authenticator<C, P> {
      * @param authenticator  the underlying authenticator
      * @param cacheSpec      a {@link CacheBuilderSpec}
      */
-    public CachingAuthenticator(MetricRegistry metricRegistry,
-                                Authenticator<C, P> authenticator,
-                                CacheBuilderSpec cacheSpec) {
+    public CachingAuthenticator(final MetricRegistry metricRegistry,
+                                final Authenticator<C, P> authenticator,
+                                final CacheBuilderSpec cacheSpec) {
         this(metricRegistry, authenticator, CacheBuilder.from(cacheSpec));
     }
 
@@ -50,9 +50,9 @@ public class CachingAuthenticator<C, P> implements Authenticator<C, P> {
      * @param authenticator  the underlying authenticator
      * @param builder        a {@link CacheBuilder}
      */
-    public CachingAuthenticator(MetricRegistry metricRegistry,
-                                Authenticator<C, P> authenticator,
-                                CacheBuilder<Object, Object> builder) {
+    public CachingAuthenticator(final MetricRegistry metricRegistry,
+                                final Authenticator<C, P> authenticator,
+                                final CacheBuilder<Object, Object> builder) {
         this.underlying = authenticator;
         this.cacheMisses = metricRegistry.meter(name(authenticator.getClass(), "cache-misses"));
         this.gets = metricRegistry.timer(name(authenticator.getClass(), "gets"));
@@ -101,9 +101,9 @@ public class CachingAuthenticator<C, P> implements Authenticator<C, P> {
      * @param predicate a predicate to filter credentials
      */
     public void invalidateAll(Predicate<? super C> predicate) {
-    	cache.invalidateAll(Sets.filter(cache.asMap().keySet(), predicate));
+        cache.invalidateAll(Sets.filter(cache.asMap().keySet(), predicate));
     }
-    
+
     /**
      * Discards all cached principals.
      */

@@ -3,7 +3,6 @@ package io.dropwizard.java8.auth;
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.base.Predicate;
 import com.google.common.cache.CacheBuilderSpec;
-import com.google.common.cache.CacheStats;
 import com.google.common.collect.ImmutableSet;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,8 +22,7 @@ public class CachingAuthenticatorTest {
     @SuppressWarnings("unchecked")
     private final Authenticator<String, String> underlying = mock(Authenticator.class);
     private final CachingAuthenticator<String, String> cached =
-            new CachingAuthenticator<>(new MetricRegistry(), underlying,
-                    CacheBuilderSpec.parse("maximumSize=1"));
+            new CachingAuthenticator<>(new MetricRegistry(), underlying, CacheBuilderSpec.parse("maximumSize=1"));
 
     @Before
     public void setUp() throws Exception {
@@ -33,11 +31,8 @@ public class CachingAuthenticatorTest {
 
     @Test
     public void cachesTheFirstReturnedPrincipal() throws Exception {
-        assertThat(cached.authenticate("credentials"))
-                .isEqualTo(Optional.of("principal"));
-
-        assertThat(cached.authenticate("credentials"))
-                .isEqualTo(Optional.of("principal"));
+        assertThat(cached.authenticate("credentials")).isEqualTo(Optional.of("principal"));
+        assertThat(cached.authenticate("credentials")).isEqualTo(Optional.of("principal"));
 
         verify(underlying, times(1)).authenticate("credentials");
     }
@@ -100,18 +95,12 @@ public class CachingAuthenticatorTest {
     @Test
     public void calculatesTheSizeOfTheCache() throws Exception {
         cached.authenticate("credentials1");
-
-        assertThat(cached.size())
-                .isEqualTo(1);
+        assertThat(cached.size()).isEqualTo(1);
     }
 
     @Test
     public void calculatesCacheStats() throws Exception {
         cached.authenticate("credentials1");
-
-        final CacheStats stats = cached.stats();
-
-        assertThat(stats.loadCount())
-                .isEqualTo(1);
+        assertThat(cached.stats().loadCount()).isEqualTo(1);
     }
 }
