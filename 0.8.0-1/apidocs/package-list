@@ -1,0 +1,9 @@
+io.dropwizard.java8
+io.dropwizard.java8.auth
+io.dropwizard.java8.auth.basic
+io.dropwizard.java8.auth.oauth
+io.dropwizard.java8.jdbi
+io.dropwizard.java8.jdbi.args
+io.dropwizard.java8.jersey
+io.dropwizard.java8.jersey.params
+io.dropwizard.java8.validation.valuehandling
