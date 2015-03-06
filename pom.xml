@@ -70,7 +70,7 @@
         <autoVersionSubmodules>true</autoVersionSubmodules>
         <quiet>true</quiet>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dropwizard.version>0.8.0-rc6-SNAPSHOT</dropwizard.version>
+        <dropwizard.version>0.8.0</dropwizard.version>
         <jersey.version>2.16</jersey.version>
         <jackson.version>2.5.1</jackson.version>
     </properties>
