@@ -6,14 +6,14 @@ Dropwizard Java 8 Bundle
 
 An addon bundle and a set of classes for using Java 8 features like `Optional<T>` and the new Date/Time API (JSR-310) in a [Dropwizard](http://www.dropwizard.io/) application.
 
-Currently it supports Java 8 versions of [dropwizard-auth](http://dropwizard.io/0.7.1/dropwizard-auth/) and [dropwizard-jdbi](http://dropwizard.io/0.7.1/dropwizard-jdbi/).
+Currently it supports Java 8 versions of [dropwizard-auth](http://dropwizard.io/0.8.0/dropwizard-auth/) and [dropwizard-jdbi](http://dropwizard.io/0.8.0/dropwizard-jdbi/).
 
 
 Usage
 -----
 
-Just add `Java8Bundle` to your [Application](http://dropwizard.io/0.7.1/dropwizard-core/apidocs/io/dropwizard/Application.html) class
-as described in the manual in the [Bundles](http://dropwizard.io/0.7.1/docs/manual/core.html#man-core-bundles) paragraph.
+Just add `Java8Bundle` to your [Application](http://dropwizard.io/0.8.0/dropwizard-core/apidocs/io/dropwizard/Application.html) class
+as described in the manual in the [Bundles](http://dropwizard.io/0.8.0/docs/manual/core.html#man-core-bundles) paragraph.
 
 This will add support for `Optional<T>` to Jersey and support for JSR-310 and `Optional<T>` to Jackson.
 
@@ -26,6 +26,14 @@ This will add support for `Optional<T>` to Jersey and support for JSR-310 and `O
         }
     }
 
+When using `ResourceTestRule` in unit tests, Java8 providers need to registered to ensure correct behaviour:
+
+    public static final ResourceTestRule resources = ResourceTestRule.builder()
+        .addResource(new HelloWorldResource())
+        .addProvider(OptionalMessageBodyWriter.class)
+        .addProvider(OptionalParamFeature.class)
+        .build();
+
 
 Maven Artifacts
 ---------------
@@ -36,19 +44,19 @@ This project is available on Maven Central. To add it to your project simply add
     <dependency>
       <groupId>io.dropwizard.modules</groupId>
       <artifactId>dropwizard-java8</artifactId>
-      <version>0.7.0-1</version>
+      <version>0.8.0-1</version>
     </dependency>
 
     <dependency>
       <groupId>io.dropwizard.modules</groupId>
       <artifactId>dropwizard-java8-auth</artifactId>
-      <version>0.7.0-1</version>
+      <version>0.8.0-1</version>
     </dependency>
 
     <dependency>
       <groupId>io.dropwizard.modules</groupId>
       <artifactId>dropwizard-java8-jdbi</artifactId>
-      <version>0.7.0-1</version>
+      <version>0.8.0-1</version>
     </dependency>
 
 
