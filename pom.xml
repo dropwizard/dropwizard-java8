@@ -14,7 +14,7 @@
 
     <groupId>io.dropwizard.modules</groupId>
     <artifactId>dropwizard-java8-parent</artifactId>
-    <version>0.8.0-2</version>
+    <version>0.8.0-3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Dropwizard Java 8 Bundle</name>
