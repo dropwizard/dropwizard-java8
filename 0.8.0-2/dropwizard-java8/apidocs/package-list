@@ -1,0 +1,4 @@
+io.dropwizard.java8
+io.dropwizard.java8.jersey
+io.dropwizard.java8.jersey.params
+io.dropwizard.java8.validation.valuehandling
