@@ -25,6 +25,7 @@
         <module>dropwizard-java8</module>
         <module>dropwizard-java8-auth</module>
         <module>dropwizard-java8-jdbi</module>
+        <module>dropwizard-java8-testing</module>
     </modules>
 
     <licenses>
