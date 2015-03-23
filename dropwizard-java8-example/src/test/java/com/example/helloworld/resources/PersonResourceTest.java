@@ -2,6 +2,7 @@ package com.example.helloworld.resources;
 
 import com.example.helloworld.core.Person;
 import com.example.helloworld.db.PersonDAO;
+import io.dropwizard.java8.testing.junit.ResourceTestRuleBuilder;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
 import org.junit.After;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.when;
 public class PersonResourceTest {
     private static final PersonDAO DAO = mock(PersonDAO.class);
     @ClassRule
-    public static final ResourceTestRule RULE = ResourceTestRule.builder()
+    public static final ResourceTestRule RULE = ResourceTestRuleBuilder.builder()
             .addResource(new PersonResource(DAO))
             .setTestContainerFactory(new GrizzlyWebTestContainerFactory())
             .build();

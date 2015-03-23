@@ -6,6 +6,7 @@ import com.example.helloworld.core.User;
 import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.java8.auth.AuthDynamicFeature;
 import io.dropwizard.java8.auth.basic.BasicCredentialAuthFilter;
+import io.dropwizard.java8.testing.junit.ResourceTestRuleBuilder;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
@@ -28,7 +29,7 @@ public class ProtectedResourceTest {
                     .buildAuthFilter();
 
     @ClassRule
-    public static final ResourceTestRule RULE = ResourceTestRule.builder()
+    public static final ResourceTestRule RULE = ResourceTestRuleBuilder.builder()
             .addProvider(RolesAllowedDynamicFeature.class)
             .addProvider(new AuthDynamicFeature(BASIC_AUTH_HANDLER))
             .addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
