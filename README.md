@@ -59,6 +59,15 @@ This project is available on Maven Central. To add it to your project simply add
       <version>0.8.0-1</version>
     </dependency>
 
+When using JSR-310 Dates with Hibernate, [Jadira UserType Extend](http://jadira.sourceforge.net/usertype.extended/) needs to be added:
+
+    <dependency>
+        <groupId>org.jadira.usertype</groupId>
+        <artifactId>usertype.extended<artifactId>
+        <version>3.2.0.GA</version>
+    </dependency>
+
+Dropwizard will auto register this in `SessionFactoryFactory`.
 
 Support
 -------
