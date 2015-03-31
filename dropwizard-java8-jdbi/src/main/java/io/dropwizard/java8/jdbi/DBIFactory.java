@@ -1,5 +1,7 @@
 package io.dropwizard.java8.jdbi;
 
+import io.dropwizard.java8.jdbi.args.LocalDateArgumentFactory;
+import io.dropwizard.java8.jdbi.args.LocalDateMapper;
 import io.dropwizard.java8.jdbi.args.LocalDateTimeArgumentFactory;
 import io.dropwizard.java8.jdbi.args.LocalDateTimeMapper;
 import io.dropwizard.java8.jdbi.args.OptionalArgumentFactory;
@@ -15,7 +17,9 @@ public class DBIFactory extends io.dropwizard.jdbi.DBIFactory {
 
         dbi.registerArgumentFactory(new OptionalArgumentFactory(configuration.getDriverClass()));
         dbi.registerContainerFactory(new OptionalContainerFactory());
+        dbi.registerArgumentFactory(new LocalDateArgumentFactory());
         dbi.registerArgumentFactory(new LocalDateTimeArgumentFactory());
+        dbi.registerMapper(new LocalDateMapper());
         dbi.registerMapper(new LocalDateTimeMapper());
 
         return dbi;
