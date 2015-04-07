@@ -63,7 +63,7 @@ When using JSR-310 Dates with Hibernate, [Jadira UserType Extend](http://jadira.
 
     <dependency>
         <groupId>org.jadira.usertype</groupId>
-        <artifactId>usertype.extended<artifactId>
+        <artifactId>usertype.extended</artifactId>
         <version>3.2.0.GA</version>
     </dependency>
 
