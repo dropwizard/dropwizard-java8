@@ -8,15 +8,25 @@
 
     <groupId>io.dropwizard.modules.dropwizard</groupId>
     <artifactId>dropwizard-java8-example</artifactId>
-    <version>0.7.1</version>
+    <version>0.8.1-1-SNAPSHOT</version>
     <name>Dropwizard Example Application</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <dropwizard.version>0.7.1</dropwizard.version>
-        <dropwizard.java8.version>0.7.0-1</dropwizard.java8.version>
+        <dropwizard.version>0.8.1</dropwizard.version>
+        <dropwizard.java8.version>${project.version}</dropwizard.java8.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>

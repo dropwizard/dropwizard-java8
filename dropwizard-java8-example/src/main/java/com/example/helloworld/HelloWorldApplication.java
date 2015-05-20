@@ -4,6 +4,7 @@ import com.example.helloworld.auth.ExampleAuthenticator;
 import com.example.helloworld.cli.RenderCommand;
 import com.example.helloworld.core.Person;
 import com.example.helloworld.core.Template;
+import com.example.helloworld.core.User;
 import com.example.helloworld.db.PersonDAO;
 import com.example.helloworld.health.TemplateHealthCheck;
 import com.example.helloworld.resources.HelloWorldResource;
@@ -12,7 +13,7 @@ import com.example.helloworld.resources.PersonResource;
 import com.example.helloworld.resources.ProtectedResource;
 import com.example.helloworld.resources.ViewResource;
 import io.dropwizard.java8.Java8Bundle;
-import io.dropwizard.java8.auth.basic.BasicAuthProvider;
+import io.dropwizard.java8.auth.basic.BasicAuthFactory;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.db.DataSourceFactory;
@@ -52,7 +53,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
             }
         });
         bootstrap.addBundle(hibernateBundle);
-        bootstrap.addBundle(new ViewBundle());
+        bootstrap.addBundle(new ViewBundle<>());
     }
 
     @Override
@@ -62,7 +63,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
 
-        environment.jersey().register(new BasicAuthProvider<>(new ExampleAuthenticator(), "SUPER SECRET STUFF"));
+        environment.jersey().register(new BasicAuthFactory<>(new ExampleAuthenticator(), "SUPER SECRET STUFF", User.class));
         environment.jersey().register(new HelloWorldResource(template));
         environment.jersey().register(new ViewResource());
         environment.jersey().register(new ProtectedResource());
