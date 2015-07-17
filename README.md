@@ -15,6 +15,7 @@ Usage
 Just add `Java8Bundle` to your [Application](http://dropwizard.io/0.8.0/dropwizard-core/apidocs/io/dropwizard/Application.html) class
 as described in the manual in the [Bundles](http://dropwizard.io/0.8.0/docs/manual/core.html#man-core-bundles) paragraph.
 
+### Serialization and deserialization
 This will add support for `Optional<T>` to Jersey and support for JSR-310 and `Optional<T>` to Jackson.
 
     public class DemoApplication extends Application<DemoConfiguration> {
@@ -33,6 +34,28 @@ When using `ResourceTestRule` in unit tests, Java8 providers need to registered 
         .addProvider(OptionalMessageBodyWriter.class)
         .addProvider(OptionalParamFeature.class)
         .build();
+
+### JDBI
+
+To get support for Java 8 objects use `io.dropwizard.java8.jdbi.DBIFactory`
+
+    import io.dropwizard.java8.jdbi.DBIFactory;
+
+    @Override
+    public void run(ExampleConfiguration config, Environment environment) {
+        final DBIFactory factory = new DBIFactory();
+        final DBI jdbi = factory.build(environment, config.getDataSourceFactory(), "postgresql");
+        final UserDAO dao = jdbi.onDemand(UserDAO.class);
+        environment.jersey().register(new UserResource(dao));
+    }
+
+When getting a single result use the annotation `@SingleValueResult`
+
+    public interface MyDAO {
+        @SingleValueResult
+        @SqlQuery("select name from something where id = :id")
+        Optional<String> findNameById(@Bind("id") int id);
+    }
 
 
 Maven Artifacts
