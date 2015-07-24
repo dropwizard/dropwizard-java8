@@ -1,7 +1,6 @@
 package io.dropwizard.java8.jersey;
 
 import com.codahale.metrics.MetricRegistry;
-import io.dropwizard.java8.validation.valuehandling.OptionalValidatedValueUnwrapper;
 import io.dropwizard.jersey.DropwizardResourceConfig;
 import io.dropwizard.logging.LoggingFactory;
 import org.glassfish.jersey.test.JerseyTest;
@@ -16,7 +15,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.core.Response;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +36,15 @@ public class OptionalMessageBodyWriterTest extends JerseyTest {
 
     @Test
     public void presentOptionalsReturnTheirValue() throws Exception {
-        assertThat(target("/optional-return/")
+        assertThat(target("optional-return")
+                .queryParam("id", "woo").request()
+                .get(String.class))
+                .isEqualTo("woo");
+    }
+
+    @Test
+    public void presentOptionalsReturnTheirValueWithResponse() throws Exception {
+        assertThat(target("optional-return/response-wrapped")
                 .queryParam("id", "woo").request()
                 .get(String.class))
                 .isEqualTo("woo");
@@ -46,7 +53,7 @@ public class OptionalMessageBodyWriterTest extends JerseyTest {
     @Test
     public void absentOptionalsThrowANotFound() throws Exception {
         try {
-            target("/optional-return/").request().get(String.class);
+            target("optional-return").request().get(String.class);
             failBecauseExceptionWasNotThrown(WebApplicationException.class);
         } catch (WebApplicationException e) {
             assertThat(e.getResponse().getStatus())
@@ -54,7 +61,7 @@ public class OptionalMessageBodyWriterTest extends JerseyTest {
         }
     }
 
-    @Path("/optional-return/")
+    @Path("optional-return")
     @Produces(MediaType.TEXT_PLAIN)
     public static class OptionalReturnResource {
         @GET
@@ -65,6 +72,12 @@ public class OptionalMessageBodyWriterTest extends JerseyTest {
         @POST
         public Optional<String> showWithFormParam(@FormParam("id") String id) {
             return Optional.ofNullable(id);
+        }
+
+        @Path("response-wrapped")
+        @GET
+        public Response showWithQueryParamResponse(@QueryParam("id") String id) {
+            return Response.ok(Optional.ofNullable(id)).build();
         }
     }
 }
