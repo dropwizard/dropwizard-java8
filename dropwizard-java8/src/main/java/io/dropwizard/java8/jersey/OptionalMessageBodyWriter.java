@@ -50,13 +50,13 @@ public class OptionalMessageBodyWriter implements MessageBodyWriter<Optional<?>>
         if (!entity.isPresent())
             throw new NotFoundException();
 
-        ParameterizedType actualGenericType = (ParameterizedType) genericType;
+        final Type innerGenericType = (genericType instanceof ParameterizedType) ?
+            ((ParameterizedType) genericType).getActualTypeArguments()[0] : entity.get().getClass();
 
         MessageBodyWriter writer = mbw.get().getMessageBodyWriter(entity.get().getClass(),
-                actualGenericType.getActualTypeArguments()[0], annotations, mediaType);
+            innerGenericType, annotations, mediaType);
         writer.writeTo(entity.get(), entity.get().getClass(),
-                actualGenericType.getActualTypeArguments()[0],
-                annotations, mediaType, httpHeaders, entityStream);
+            innerGenericType, annotations, mediaType, httpHeaders, entityStream);
     }
 
 }
