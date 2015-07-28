@@ -14,7 +14,7 @@
 
     <groupId>io.dropwizard.modules</groupId>
     <artifactId>dropwizard-java8-parent</artifactId>
-    <version>0.8.0-3-SNAPSHOT</version>
+    <version>0.8.1-1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Dropwizard Java 8 Bundle</name>
@@ -25,6 +25,7 @@
         <module>dropwizard-java8</module>
         <module>dropwizard-java8-auth</module>
         <module>dropwizard-java8-jdbi</module>
+        <module>dropwizard-java8-example</module>
     </modules>
 
     <licenses>
@@ -70,8 +71,9 @@
         <autoVersionSubmodules>true</autoVersionSubmodules>
         <quiet>true</quiet>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dropwizard.version>0.8.0</dropwizard.version>
-        <jersey.version>2.16</jersey.version>
+        <dropwizard.version>0.8.1</dropwizard.version>
+        <assertj.version>2.0.0</assertj.version>
+        <jersey.version>2.17</jersey.version>
         <jackson.version>2.5.1</jackson.version>
     </properties>
 
@@ -85,7 +87,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>1.7.1</version>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
