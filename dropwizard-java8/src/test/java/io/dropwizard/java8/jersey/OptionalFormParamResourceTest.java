@@ -1,10 +1,9 @@
 package io.dropwizard.java8.jersey;
 
 import com.codahale.metrics.MetricRegistry;
-import io.dropwizard.java8.validation.valuehandling.OptionalValidatedValueUnwrapper;
 import io.dropwizard.jersey.DropwizardResourceConfig;
 import io.dropwizard.jersey.params.UUIDParam;
-import io.dropwizard.logging.LoggingFactory;
+import io.dropwizard.logging.BootstrapLogging;
 import org.glassfish.jersey.internal.util.collection.MultivaluedStringMap;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
@@ -23,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class OptionalFormParamResourceTest extends JerseyTest {
     static {
-        LoggingFactory.bootstrap();
+        BootstrapLogging.bootstrap();
     }
 
     @Override
