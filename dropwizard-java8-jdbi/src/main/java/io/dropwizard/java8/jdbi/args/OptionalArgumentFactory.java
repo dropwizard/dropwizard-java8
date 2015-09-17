@@ -12,9 +12,15 @@ import java.util.Optional;
 public class OptionalArgumentFactory implements ArgumentFactory<Optional<Object>> {
     private static class DefaultOptionalArgument implements Argument {
         private final Optional<?> value;
+        private final int nullType;
+
+        private DefaultOptionalArgument(Optional<?> value, int nullType) {
+            this.value = value;
+            this.nullType = nullType;
+        }
 
         private DefaultOptionalArgument(Optional<?> value) {
-            this.value = value;
+            this(value, Types.OTHER);
         }
 
         @Override
@@ -24,7 +30,7 @@ public class OptionalArgumentFactory implements ArgumentFactory<Optional<Object>
             if (value.isPresent()) {
                 statement.setObject(position, value.get());
             } else {
-                statement.setNull(position, Types.OTHER);
+                statement.setNull(position, nullType);
             }
         }
     }
@@ -59,6 +65,8 @@ public class OptionalArgumentFactory implements ArgumentFactory<Optional<Object>
     public Argument build(Class<?> expectedType, Optional<Object> value, StatementContext ctx) {
         if ("com.microsoft.sqlserver.jdbc.SQLServerDriver".equals(jdbcDriver)) {
             return new MsSqlOptionalArgument(value);
+        } else if ("oracle.jdbc.OracleDriver".equals(jdbcDriver)) {
+            return new DefaultOptionalArgument(value, Types.NULL);
         }
         return new DefaultOptionalArgument(value);
     }
