@@ -4,6 +4,7 @@ import com.example.helloworld.core.Person;
 import com.example.helloworld.db.PersonDAO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.ImmutableList;
+import io.dropwizard.java8.testing.junit.ResourceTestRuleBuilder;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.After;
 import org.junit.Before;
@@ -34,7 +35,7 @@ import static org.mockito.Mockito.when;
 public class PeopleResourceTest {
     private static final PersonDAO dao = mock(PersonDAO.class);
     @ClassRule
-    public static final ResourceTestRule resources = ResourceTestRule.builder()
+    public static final ResourceTestRule resources = ResourceTestRuleBuilder.builder()
             .addResource(new PeopleResource(dao))
             .build();
     @Captor

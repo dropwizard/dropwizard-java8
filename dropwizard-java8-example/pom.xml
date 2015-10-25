@@ -87,6 +87,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>io.dropwizard.modules</groupId>
+            <artifactId>dropwizard-java8-testing</artifactId>
+            <version>${dropwizard.java8.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.glassfish.jersey.test-framework.providers</groupId>
             <artifactId>jersey-test-framework-provider-inmemory</artifactId>
             <scope>test</scope>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <prerequisites>
+        <maven>3.0.0</maven>
+    </prerequisites>
+
+    <parent>
+        <groupId>io.dropwizard.modules</groupId>
+        <artifactId>dropwizard-java8-parent</artifactId>
+        <version>0.9.0-rc5-1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>dropwizard-java8-testing</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Dropwizard Test Helpers with Java 8 support</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.dropwizard.modules</groupId>
+            <artifactId>dropwizard-java8</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-testing</artifactId>
+        </dependency>
+    </dependencies>
+</project>
