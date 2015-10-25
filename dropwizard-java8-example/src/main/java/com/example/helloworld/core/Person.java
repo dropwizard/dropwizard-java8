@@ -1,18 +1,22 @@
 package com.example.helloworld.core;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "people")
 @NamedQueries({
-    @NamedQuery(
-        name = "com.example.helloworld.core.Person.findAll",
-        query = "SELECT p FROM Person p"
-    ),
-    @NamedQuery(
-        name = "com.example.helloworld.core.Person.findById",
-        query = "SELECT p FROM Person p WHERE p.id = :id"
-    )
+        @NamedQuery(
+                name = "com.example.helloworld.core.Person.findAll",
+                query = "SELECT p FROM Person p"
+        )
 })
 public class Person {
     @Id
@@ -24,6 +28,14 @@ public class Person {
 
     @Column(name = "jobTitle", nullable = false)
     private String jobTitle;
+
+    public Person() {
+    }
+
+    public Person(String fullName, String jobTitle) {
+        this.fullName = fullName;
+        this.jobTitle = jobTitle;
+    }
 
     public long getId() {
         return id;
@@ -47,5 +59,26 @@ public class Person {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Person)) {
+            return false;
+        }
+
+        final Person that = (Person) o;
+
+        return Objects.equals(this.id, that.id) &&
+                Objects.equals(this.fullName, that.fullName) &&
+                Objects.equals(this.jobTitle, that.jobTitle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, fullName, jobTitle);
     }
 }

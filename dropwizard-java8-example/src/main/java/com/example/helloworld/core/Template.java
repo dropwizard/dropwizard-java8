@@ -8,7 +8,7 @@ public class Template {
     private final String content;
     private final String defaultName;
 
-    public Template(final String content, final String defaultName) {
+    public Template(String content, String defaultName) {
         this.content = content;
         this.defaultName = defaultName;
     }

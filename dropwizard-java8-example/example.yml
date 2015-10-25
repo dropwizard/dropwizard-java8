@@ -1,6 +1,6 @@
 template: Hello, %s!
 
-defaultName: Stranger
+defaultName: ${DW_DEFAULT_NAME:-Stranger}
 
 # Database settings.
 database:
@@ -35,7 +35,7 @@ server:
       keyStorePath: example.keystore
       keyStorePassword: example
       validateCerts: false
-# this requires the npn-boot library on the JVM's boot classpath
+# this requires the alpn-boot library on the JVM's boot classpath
 #    - type: spdy3
 #      port: 8445
 #      keyStorePath: example.keystore
@@ -62,7 +62,27 @@ logging:
     # Sets the level for 'com.example.app' to DEBUG.
     com.example.app: DEBUG
 
-    org.hibernate.SQL: ALL
+    # Redirects SQL logs to a separate file
+    org.hibernate.SQL:
+      level: DEBUG
+
+# Logback's Time Based Rolling Policy - archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}.log.gz
+# Logback's Size and Time Based Rolling Policy -  archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+# Logback's Fixed Window Rolling Policy -  archivedLogFilenamePattern: /tmp/application-%i.log.gz
 
   appenders:
     - type: console
+    - type: file
+      threshold: INFO
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
+      currentLogFilename: /tmp/application.log
+      archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 7
+      timeZone: UTC
+      maxFileSize: 10MB
+
+# the key needs to match the suffix of the renderer
+viewRendererConfiguration:
+    .ftl:
+        strict_syntax: yes
+        whitespace_stripping: yes
