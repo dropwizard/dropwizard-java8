@@ -1,0 +1,4 @@
+io.dropwizard.java8.auth
+io.dropwizard.java8.auth.basic
+io.dropwizard.java8.auth.chained
+io.dropwizard.java8.auth.oauth
