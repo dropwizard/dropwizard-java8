@@ -1,11 +1,11 @@
 package io.dropwizard.java8.jersey;
 
 import com.codahale.metrics.MetricRegistry;
-import io.dropwizard.java8.validation.valuehandling.OptionalValidatedValueUnwrapper;
 import io.dropwizard.jersey.DropwizardResourceConfig;
 import io.dropwizard.jersey.params.UUIDParam;
-import io.dropwizard.logging.LoggingFactory;
+import io.dropwizard.logging.BootstrapLogging;
 import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
 import org.junit.Test;
 
 import javax.ws.rs.BadRequestException;
@@ -13,20 +13,19 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Application;
-
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OptionalQueryParamResourceTest extends JerseyTest {
     static {
-        LoggingFactory.bootstrap();
+        BootstrapLogging.bootstrap();
     }
 
     @Override
     protected Application configure() {
+        forceSet(TestProperties.CONTAINER_PORT, "0");
         return DropwizardResourceConfig.forTesting(new MetricRegistry())
-                .register(OptionalMessageBodyWriter.class)
                 .register(OptionalParamFeature.class)
                 .register(OptionalQueryParamResource.class)
                 .register(MyMessageParamConverterProvider.class);
@@ -44,6 +43,12 @@ public class OptionalQueryParamResourceTest extends JerseyTest {
         String customMessage = "Custom Message";
         String response = target("/optional/message").queryParam("message", customMessage).request().get(String.class);
         assertThat(response).isEqualTo(customMessage);
+    }
+
+    @Test
+    public void shouldReturnMessageWhenMessageIsBlank() {
+        String response = target("/optional/message").queryParam("message", "").request().get(String.class);
+        assertThat(response).isEqualTo("");
     }
 
     @Test

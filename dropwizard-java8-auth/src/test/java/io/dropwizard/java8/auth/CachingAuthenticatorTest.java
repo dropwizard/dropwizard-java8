@@ -1,38 +1,43 @@
 package io.dropwizard.java8.auth;
 
 import com.codahale.metrics.MetricRegistry;
-import com.google.common.base.Predicate;
 import com.google.common.cache.CacheBuilderSpec;
 import com.google.common.collect.ImmutableSet;
+import io.dropwizard.auth.PrincipalImpl;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InOrder;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class CachingAuthenticatorTest {
-    @SuppressWarnings("unchecked")
-    private final Authenticator<String, String> underlying = mock(Authenticator.class);
-    private final CachingAuthenticator<String, String> cached =
-            new CachingAuthenticator<>(new MetricRegistry(), underlying, CacheBuilderSpec.parse("maximumSize=1"));
+    @Mock
+    private Authenticator<String, Principal> underlying;
+    private CachingAuthenticator<String, Principal> cached;
 
     @Before
     public void setUp() throws Exception {
-        when(underlying.authenticate(anyString())).thenReturn(Optional.of("principal"));
+        when(underlying.authenticate(anyString())).thenReturn(Optional.<Principal>of(new PrincipalImpl("principal")));
+        cached = new CachingAuthenticator<>(new MetricRegistry(), underlying, CacheBuilderSpec.parse("maximumSize=1"));
+
     }
 
     @Test
     public void cachesTheFirstReturnedPrincipal() throws Exception {
-        assertThat(cached.authenticate("credentials")).isEqualTo(Optional.of("principal"));
-        assertThat(cached.authenticate("credentials")).isEqualTo(Optional.of("principal"));
+        assertThat(cached.authenticate("credentials")).isEqualTo(Optional.<Principal>of(new PrincipalImpl("principal")));
+        assertThat(cached.authenticate("credentials")).isEqualTo(Optional.<Principal>of(new PrincipalImpl("principal")));
 
         verify(underlying, times(1)).authenticate("credentials");
     }
@@ -69,15 +74,8 @@ public class CachingAuthenticatorTest {
 
     @Test
     public void invalidatesCredentialsMatchingGivenPredicate() throws Exception {
-        Predicate<String> predicate = new Predicate<String>() {
-            @Override
-            public boolean apply(String c) {
-                return c.equals("credentials");
-            }
-        };
-
         cached.authenticate("credentials");
-        cached.invalidateAll(predicate);
+        cached.invalidateAll(c -> c.equals("credentials"));
         cached.authenticate("credentials");
 
         verify(underlying, times(2)).authenticate("credentials");
@@ -101,6 +99,15 @@ public class CachingAuthenticatorTest {
     @Test
     public void calculatesCacheStats() throws Exception {
         cached.authenticate("credentials1");
-        assertThat(cached.stats().loadCount()).isEqualTo(1);
+        assertThat(cached.stats().loadCount()).isEqualTo(0);
+        assertThat(cached.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldNotCacheAbsentPrincipals() throws Exception {
+        when(underlying.authenticate(anyString())).thenReturn(Optional.<Principal>empty());
+        assertThat(cached.authenticate("credentials")).isEqualTo(Optional.empty());
+        verify(underlying).authenticate("credentials");
+        assertThat(cached.size()).isEqualTo(0);
     }
 }
