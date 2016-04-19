@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
- * An {@link ArgumentFactory} for {@link LocalDateTime} arguments wrapped by Guava's {@link Optional}.
+ * An {@link ArgumentFactory} for {@link LocalDateTime} arguments wrapped by Java 8's {@link Optional}.
  */
 public class OptionalLocalDateTimeArgumentFactory implements ArgumentFactory<Optional<LocalDateTime>> {
     @Override
