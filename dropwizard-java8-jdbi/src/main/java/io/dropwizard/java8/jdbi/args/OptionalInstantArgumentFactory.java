@@ -12,7 +12,7 @@ import java.util.TimeZone;
 import java.util.function.Function;
 
 /**
- * An {@link ArgumentFactory} for {@link Instant} arguments wrapped by Guava's {@link Optional}.
+ * An {@link ArgumentFactory} for {@link Instant} arguments wrapped by Java 8's {@link Optional}.
  */
 public class OptionalInstantArgumentFactory implements ArgumentFactory<Optional<Instant>> {
 
