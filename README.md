@@ -9,6 +9,8 @@ An addon bundle and a set of classes for using Java 8 features like `Optional<T>
 
 Currently it supports Java 8 versions of [dropwizard-auth](http://dropwizard.io/0.9.0/dropwizard-auth/) and [dropwizard-jdbi](http://dropwizard.io/0.9.0/dropwizard-jdbi/).
 
+**INFO**: The Dropwizard Java 8 Bundle has been integrated into [Dropwizard 1.0.0 and higher](http://www.dropwizard.io/1.0.0/docs/about/release-notes.html#v1-0-0-jul-26-2016) and not required any more. Please only use this bundle if you're using an older version of Dropwizard.
+
 
 Usage
 -----
